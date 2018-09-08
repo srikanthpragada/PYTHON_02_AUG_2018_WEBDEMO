@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Products</title>
+</head>
+<body>
+<h2 style="color:red">List Of Products</h2>
+
+<ul>
+    {% for p in products %}
+       <li>{{p.name | upper}} - {{p.price | floatformat:2 }} </li>
+    {% endfor %}
+</ul>
+
+No. of products : {{ products | length }}
+<p></p>
+Average price of products : {{average| floatformat:2}}
+
+</body>
+</html>
