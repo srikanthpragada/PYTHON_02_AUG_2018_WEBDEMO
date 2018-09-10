@@ -32,7 +32,21 @@ def  net_price(request):
             netamount = netamount * 0.90
         return render(request,'net_price.html',
                    {'netamount': netamount, "amount" : amount, "qty": qty})
-    else:
+    else:  # Get request
+        return render(request, 'net_price.html')
+
+
+def  net_price_with_form(request):
+    if request.method == "POST":
+        # calculate net amount
+        amount = int(request.POST['amount'])
+        qty = int(request.POST['qty'])
+        netamount = amount * qty
+        if qty > 5:
+            netamount = netamount * 0.90
+        return render(request,'net_price.html',
+                   {'netamount': netamount, "amount" : amount, "qty": qty})
+    else:  # Get request
         return render(request, 'net_price.html')
 
 
