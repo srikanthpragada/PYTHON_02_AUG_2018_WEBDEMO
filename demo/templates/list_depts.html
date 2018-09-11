@@ -1,0 +1,28 @@
+{% extends "dept_base.html" %}
+
+{% block title %}List Departments{% endblock %}
+
+{% block content %}
+<h2>List Department</h2>
+{% if error %}
+  <h4>{{error}}</h4>
+{% endif %}
+
+{% if departments %}
+  <table border="1" cellpadding="5pt">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Location</th>
+    </tr>
+    {% for dept in departments %}
+    <tr>
+        <td> {{dept.0}}</td>
+        <td> {{dept.1}}</td>
+        <td> {{dept.2}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endif %}
+
+{% endblock content%}

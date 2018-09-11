@@ -6,11 +6,9 @@
 </head>
 <body>
 <h2>Net Price Calculator</h2>
-<form method="post">
+<form method="post" novalidate>
     {% csrf_token %}
-    <table>
-    {{form}}
-    </table>
+    {{form.as_p}}
     <p></p>
     <input type="submit" value="Show Net Price"/>
 </form>

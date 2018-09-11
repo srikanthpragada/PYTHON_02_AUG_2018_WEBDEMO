@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> {% block title %}Departments{% endblock %} </title>
+    <style>
+        .banner { color:white; background-color:blue;font-family:arial;font-size:20pt}
+        .links { backround-color:lightgray;font-family:verdana;font-size:12pt}
+    </style>
+</head>
+<body>
+<div  class="banner">Departments</div>
+<div class="links">
+    <a href="/demo/add_dept/">Add Department</a>
+    &nbsp;
+    <a href="/demo/list_depts/">List Departments</a>
+</div>
+
+{%block content %}
+{% endblock %}
+
+
+</body>
+</html>
