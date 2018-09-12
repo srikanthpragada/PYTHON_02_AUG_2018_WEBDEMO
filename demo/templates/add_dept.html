@@ -4,4 +4,11 @@
 
  {% block content %}
  <h2>Add Department</h2>
+
+ <form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <p></p>
+    <input type="submit" value="Add Dept"/>
+  </form>
  {% endblock content%}
