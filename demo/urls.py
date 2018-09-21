@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from . import views
-from . import dept_views
+from . import dept_views, book_views
 
 
 urlpatterns = [
@@ -12,5 +12,8 @@ urlpatterns = [
     path('netprice3/', views.net_price_with_form),
     path('add_dept/', dept_views.add_dept),
     path('list_depts/', dept_views.list_depts),
-
+    path('book_home/', book_views.book_home),
+    path('add_book/', book_views.add_book),
+    path('list_books/', book_views.list_books),
+    path('search_books/', book_views.search_books),
 ]

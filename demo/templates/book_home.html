@@ -1,0 +1,13 @@
+{% extends "book_base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<h2>
+    No. of Books : {{bookcount}}
+    <br/>
+    Average price : {{avgprice | floatformat:'2'}}
+</h2>
+
+{% endblock content%}

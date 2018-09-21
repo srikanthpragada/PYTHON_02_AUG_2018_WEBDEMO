@@ -1,4 +1,6 @@
 from django import forms
+from django.forms import ModelForm
+from demo.models import Book
 
 
 class NetPriceForm(forms.Form):
@@ -10,7 +12,12 @@ class AddDeptForm(forms.Form):
     name = forms.CharField(label="Department Name", max_length=30)
     location = forms.ChoiceField(label="Department Location",
                                  # (value,text)
-                                 choices=[("Mumbai","Mumbai"),
-                                          ("Delhi","Delhi"),
-                                          ("Chennai", "Chennai"),])
+                                 choices=[("Mumbai", "Mumbai"),
+                                          ("Delhi", "Delhi"),
+                                          ("Chennai", "Chennai"), ])
 
+# form created from model
+class BookForm(ModelForm):
+    class Meta:
+        model = Book
+        fields = ['title', 'price', 'author']

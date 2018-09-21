@@ -1,0 +1,24 @@
+{% extends "book_base.html" %}
+
+{% block title %}List Books{% endblock %}
+
+{% block content %}
+<h2>List Books</h2>
+  <table border="1" width="100%" cellpadding="5pt">
+    <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Price</th>
+        <th>Author</th>
+    </tr>
+    {% for book in books %}
+    <tr>
+        <td> {{book.bookid}}</td>
+        <td> {{book.title}}</td>
+        <td> {{book.price}}</td>
+        <td> {{book.author}}</td>
+    </tr>
+    {% endfor %}
+ </table>
+
+{% endblock content%}

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> {% block title %}Books{% endblock %} </title>
+    <style>
+        .banner { color:white; background-color:blue;font-family:arial;font-size:20pt}
+        .links { backround-color:lightgray;font-family:verdana;font-size:12pt}
+    </style>
+</head>
+<body>
+<div  class="banner">Books</div>
+<div class="links">
+    <a href="/demo/book_home/">Home</a>
+    <a href="/demo/add_book/">Add Book</a>
+    <a href="/demo/list_books/">List Books</a>
+    <a href="/demo/search_books/">Search Books</a>
+</div>
+
+{%block content %}
+{% endblock %}
+
+
+</body>
+</html>
