@@ -18,4 +18,5 @@ urlpatterns = [
     path('ajax/', ajax_views.ajax_demo),
     path('ajax_now/', ajax_views.now),
     path('ajax_get_title/', ajax_views.get_title),
+    path('ajax_get_book/', ajax_views.get_book),
 ]

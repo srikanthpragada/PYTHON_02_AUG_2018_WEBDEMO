@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse, HttpResponseNotFound
 from datetime import datetime, time
 import time
 from .models import Book
@@ -13,8 +13,24 @@ def now(request):
     # time.sleep(10)
     return HttpResponse(str(datetime.now()))
 
+
 def get_title(request):
     id = request.GET["bookid"]
     print(id)
-    book = Book.objects.get(bookid = id)
-    return HttpResponse(book.title)
+
+    try:
+        book = Book.objects.get(bookid=id)
+        title = book.title;
+    except:
+        title = "Book Not Found"
+
+    return HttpResponse(title)
+
+
+def get_book(request):
+    id = request.GET["bookid"]
+    try:
+        book = Book.objects.get(bookid=id)
+        return JsonResponse({"title" : book.title, "price" : book.price, "author": book.author}, safe=False)
+    except:
+        return JsonResponse({"error" : "Book not found!"})

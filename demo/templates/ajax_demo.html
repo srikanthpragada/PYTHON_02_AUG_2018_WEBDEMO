@@ -23,6 +23,22 @@
             $("#title").text(response)
         }
 
+
+        function getBook() {
+            var id = $("#id").val();
+            $.getJSON("/demo/ajax_get_book",{ "bookid" : id}, showBook);
+        }
+
+        function showBook(book) {
+             if (book.error)
+                 $("#details").html("<h4>" + book.error + "</h4>")
+             else
+             {
+                $("#details").html("<h4>Title : " + book.title  + "<br/>Price : "
+                    + book.price + "<br/>Author : " + book.author + "</h4>")
+             }
+        }
+
     </script>
 </head>
 <body>
@@ -32,6 +48,10 @@
 <hr/>
 Id <input type="number" id="bookid" onblur="getTitle()" />
 <span id="title"></span>
+
+<hr/>
+Id <input type="number" id="id"/> <button onclick="getBook()">Get Book</button>
+<span id="details"></span>
 
 
 </body>
