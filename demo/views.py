@@ -69,3 +69,19 @@ def show_products_list(request):
 
     return render(request, 'products_list.html',
                   {"products": products, "average": avg})
+
+
+def list_langs(request):
+    # either take existing langs or empty list
+    if 'langs' in request.session:
+        langs = request.session['langs']
+    else:
+        langs = []
+
+    if request.method == "POST":
+        # add name to list
+        lang = request.POST["lang"]
+        langs.append(lang)
+        request.session['langs'] = langs
+
+    return render(request, 'list_langs.html', {'langs': langs})

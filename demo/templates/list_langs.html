@@ -1,0 +1,15 @@
+<html lang="en">
+<body>
+<h2>Languages</h2>
+{% for n in langs %}
+    {{ n }} <br/>
+{% endfor %}
+
+<h3>Add Language</h3>
+<form method="post">
+    {% csrf_token %}
+    Language : <input type="text" name="lang" />
+    <input type="submit" value="Add"/>
+</form>
+</body>
+</html>
