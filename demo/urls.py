@@ -1,7 +1,10 @@
 from django.contrib import admin
 from django.urls import path
 from . import views
-from . import dept_views, book_views, ajax_views
+from . import dept_views
+from . import book_views
+from . import ajax_views
+from . import rest_views
 from . import class_views
 
 urlpatterns = [
@@ -22,4 +25,7 @@ urlpatterns = [
     path('ajax_get_book/', ajax_views.get_book),
     path('list_langs/', views.list_langs),
     path('about/', class_views.AboutView.as_view()),
+    path('books/', class_views.BooksList.as_view()),
+    path('api/books/', rest_views.list_books),
+    path('api/books/<int:bookid>', rest_views.process_book),
 ]

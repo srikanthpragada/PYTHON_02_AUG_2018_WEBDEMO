@@ -18,7 +18,7 @@ def add_book(request):
 
 
 def list_books(request):
-    return render(request, 'list_books.html', {"books": Book.objects.all()})
+    return render(request, 'books_list.html', {"books": Book.objects.all()})
 
 
 def book_home(request):
