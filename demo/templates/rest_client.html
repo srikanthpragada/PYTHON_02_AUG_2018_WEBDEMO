@@ -1,0 +1,166 @@
+<html>
+<head>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <script>
+    var URL = "/demo/api/books/";
+
+    $(document).ready(
+       function() {
+          $("#books").hide();
+       }
+    );
+
+    function getbooks()
+    {
+       $.getJSON(URL,{},showbooks);
+    }
+
+    function getbook()
+    {
+       $.getJSON(URL + $("#bookid").val())
+           .done(showbook)   // on success - 200
+           .fail(function()    // on failure - 404
+                 {
+                    $("#title").val("")
+                    $("#price").val("")
+                    $("#author").val("")
+                    alert("Sorry! book Not Found!");
+                 }
+           );
+    }
+
+    function showbook(book)
+    {
+        $("#title").val(book.title)
+        $("#price").val(book.price)
+        $("#author").val(book.author)
+    }
+
+    function showbooks(books) {
+       $("#bookrows").html("")
+       $.each(books,
+              function(idx,book) {
+                 $("#bookrows").append("<tr><td>" + book.bookid + "</td><td>" +
+                       book.title + "</td><td>" + book.price + "</td><td>" +
+                       book.author + "</td></tr>");
+              } // anonymous function
+        ); // each()
+
+        $("#books").show();
+   } // showbooks
+
+    function addbook()
+    {
+       $.ajax(
+          { "url": URL,
+             "data": {
+                       "title" : $("#title").val(),
+                       "price" : $("#price").val(),
+                       "author" : $("#author").val()
+                     },
+             "type" : "post",
+             "success" : add_success,
+             "error" : add_error
+          }
+      ); // ajax()
+    }
+
+    function add_success()
+    {
+      alert("Added book Successfully");
+    }
+
+    function add_error()
+    {
+      alert("Could not add book!");
+    }
+
+    function deletebook()
+    {
+       $.ajax(
+          {  "url": URL + $("#bookid").val(),
+             "type" : "delete",
+             "success" : delete_success,
+             "error" : delete_error
+          }
+      ); // ajax()
+    }
+
+    function delete_success()
+    {
+      alert("Deleted book Successfully");
+    }
+
+    function delete_error()
+    {
+      alert("Could not delete book!");
+    }
+
+    function updatebook()
+    {
+       $.ajax(
+          {  "url"     : URL + $("#bookid").val(),
+             "data"    : { "bookid"     : $("#bookid").val(),
+                           "title"    : $("#title").val(),
+                           "price" : $("#price").val(),
+                           "author"      : $("#author").val()
+                          },
+             "type"    : "put",
+             "success" : update_success,
+             "error"   : update_error
+          }
+      ); // ajax()
+    }
+
+    function update_success()
+    {
+      alert("Updated book Successfully");
+    }
+
+    function update_error()
+    {
+      alert("Could not update book!");
+    }
+    </script>
+</head>
+<body>
+<div style="background-color:navy;color:white;font-family:arial;font-size:20pt;font-weight:bold">
+    Book Client</div>
+<p/>
+Book Id <br/>
+<input type="number" id="bookid"/>
+<br/>
+Title <br/>
+<input type="text" id="title"/>
+<br/>
+Price <br/>
+<input type="number" id="price"/>
+<br/>
+Author <br/>
+<input type="text" id="author"/>
+<p/>
+<button onclick="getbook()">Details</button>
+<button onclick="addbook()">Add </button>
+<button onclick="deletebook()">Delete </button>
+<button onclick="updatebook()">Update </button>
+<button onclick="getbooks()">List</button>
+<p/>
+
+<table border="1" cellpadding="5pt" id="books" width="100%">
+    <thead>
+    <tr>
+        <th>Bookid</th>
+        <th>Title</th>
+        <th>Price</th>
+        <th>Author</th>
+    </tr>
+    </thead>
+    <tbody id="bookrows"></tbody>
+</table>
+</body>
+</html></title>
+</head>
+<body>
+
+</body>
+</html>
